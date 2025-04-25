@@ -149,13 +149,17 @@ dependencies {
 // When "copyIdeResources" is enabled, this will also run before the game launches in IDE environments.
 // See https://docs.gradle.org/current/dsl/org.gradle.language.jvm.tasks.ProcessResources.html
 tasks.named('processResources', ProcessResources).configure {
-    var replaceProperties = [
-            minecraft_version: minecraft_version, minecraft_version_range: minecraft_version_range,
-            forge_version: forge_version, forge_version_range: forge_version_range,
-            loader_version_range: loader_version_range,
-            mod_id: mod_id, mod_name: mod_name, mod_license: mod_license, mod_version: mod_version,
-            mod_authors: mod_authors, mod_description: mod_description,
+    def replaceProperties = [
+            mod_id: 'examplemodirena',
+            mod_name: 'Example Mod Irena',
+            mod_version: '1.0.0',
+            mod_description: 'A shiny new mod with a sapphire item.',
+            mod_authors: 'Your Name',
+            mod_license: 'MIT',
+            forge_version_range: '[55.0.9,)',  // Update based on your actual Forge version
+            loader_version_range: '[55.0.9,)'  // Same here
     ]
+
     inputs.properties replaceProperties
 
     filesMatching(['META-INF/mods.toml', 'pack.mcmeta']) {
